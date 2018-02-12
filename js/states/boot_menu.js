@@ -1,4 +1,6 @@
-Game.boot_menuState = function(game) {
+/* global Game, textManager, colors, backgroundS, soundManager */
+
+Game.boot_menuState = function() {
 
 };
 

@@ -1,12 +1,14 @@
+/* global textManager, colors, soundManager, clickS, Phaser */
+
 var buttonManager = new Object();
 
 var button;
 
 buttonManager.createButton = function(game, stringName, isMenuButton, x, y, w, h, callback, buttonFrame, buttonAlpha, check) {
-    if(isMenuButton == false) {
+    if(isMenuButton === false) {
         button = game.add.button(x, y, 'button', callback, this, buttonFrame, buttonFrame, 0);
     }
-    else if(isMenuButton == true) {
+    else if(isMenuButton === true) {
         button = game.add.button(x, y, 'button', callback, this, 2, buttonFrame, buttonFrame);
     }
 

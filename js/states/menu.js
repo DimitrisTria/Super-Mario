@@ -1,4 +1,6 @@
-Game.menuState = function(game) {
+/* global Game, Phaser, imageManager, colors, textManager, buttonManager, menuButtonSize, max_level, buttonFrame, me, levelManager */
+
+Game.menuState = function() {
 
 };
 

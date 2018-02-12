@@ -1,4 +1,6 @@
-Game.choose_levelState = function(game) {
+/* global Game, Phaser, imageManager, colors, textManager, buttonManager, max_level, buttonFrame, levelButtonSize, soundManager, clickS, levelManager, levelLocked */
+
+Game.choose_levelState = function() {
     
 };
 

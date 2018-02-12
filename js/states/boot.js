@@ -64,23 +64,23 @@ var isDificultyBPressed = false;
 
 //buttons
 var playB, levelsB, helpB, settingsB;
-var level_zero_B, level_one_B, level_two_B, level_three_B
+var level_zero_B, level_one_B, level_two_B, level_three_B;
 var continueB, dificultyB, normalB, hardB, survivalB, muteB;
 
 var startXY = {
     x:10,
     y:140
-}
+};
 
 var scoreXY = {
     x:45,
     y:1
-}
+};
 
 var clockXY = {
     x:95,
     y:1
-}
+};
 
 var colors = {
     white:"#FFFFFF",
@@ -88,30 +88,30 @@ var colors = {
     green:"#00FF00",
     blue:"#0000FF",
     orange:"#FF9933"
-}
+};
 
 var visibleObject = {
     true:1,
     cheat:0.99,
     mid:0.45,
     false:0.0001
-}
+};
 
 var buttonFrame = {
     menu_button:0,
     red_button:1,
     green_button:2
-}
+};
 
 var levelButtonSize = {
     width:30,
     height:30
-}
+};
 
 var menuButtonSize = {
     width:80,
     height:30
-}
+};
 /*
 var spritesSheet = {
     score:0,

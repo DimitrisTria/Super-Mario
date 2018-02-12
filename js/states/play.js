@@ -1,4 +1,6 @@
-Game.playState = function(game) {
+/* global Game, imageManager, Phaser, level, currentLevel, buttonManager, max_level, buttonFrame, startXY, extraDificulty, visibleObject, currentLifes, scoreXY, clockXY, backgroundS, soundManager, levelManager, bonus_type, doubleCoinS, coinS, doubleKillS, stompS, deathS, game_overS, mushroomSound, teleportS, ufoRange, fireRate, laserS, stage_clearS, fireworkS, jumpS */
+
+Game.playState = function() {
 
 };
 
@@ -6,7 +8,7 @@ Game.playState = function(game) {
 
 Game.playState.prototype = {
 
-    init:function(game) {
+    init:function() {
         checkP =false;
         checkT = false;
         checkB = false;
@@ -174,23 +176,23 @@ Game.playState.prototype = {
 
         ufos.forEach(this.shoot, this);
 
-        if(player.body.enable==true) {
+        if(player.body.enable === true) {
             this.gameTimer(game);
-            if(checkB==false) {
+            if(checkB === false) {
                 time_event_text.text = "time: " +gameTime;
             }
         }
     },
 
     //collisions
-    collisions:function(game) {
+    collisions:function() {
         this.physics.arcade.collide(player, layer);
         this.physics.arcade.collide(goombas, layer);
         this.physics.arcade.collide(fireballs, layer);
     },
 
     //overlaps
-    overlaps:function(game) {
+    overlaps:function() {
         this.physics.arcade.overlap(player, coins, this.coinOverlap.bind(this));
         this.physics.arcade.overlap(player, mushrooms, this.mushroomOverlap.bind(this));
         this.physics.arcade.overlap(player, teleports, this.teleportOverlap.bind(this));
@@ -204,8 +206,8 @@ Game.playState.prototype = {
         this.physics.arcade.overlap(player, lasers, this.laserOverlap.bind(this));
     },
 
-    enemyPhysics:function(game) {
-        if(enableEnemyPhysics == true) {
+    enemyPhysics:function() {
+        if(enableEnemyPhysics === true) {
             this.physics.arcade.overlap(player, goombas, this.goombaOverlap.bind(this));
             this.physics.arcade.overlap(player, fireballs, this.fireballOverlap.bind(this));
         }
@@ -213,10 +215,10 @@ Game.playState.prototype = {
 
     //player collects coins
     coinOverlap:function(player, coin) {
-        if(currentBonus == bonus_type[0]) {
+        if(currentBonus === bonus_type[0]) {
             soundManager.playSound(this, doubleCoinS);
         }
-        else if(currentBonus != bonus_type[0]) {
+        else if(currentBonus !== bonus_type[0]) {
             soundManager.playSound(this, coinS);
         }
         this.updateScore(this, 10);
@@ -233,10 +235,10 @@ Game.playState.prototype = {
         if (player.body.touching.down) {
             goomba.animations.stop();
             goomba.frame = 2;
-            if(currentBonus == bonus_type[1]) {
+            if(currentBonus === bonus_type[1]) {
                 soundManager.playSound(this, doubleKillS);
             }
-            else if(currentBonus != bonus_type[1]) {
+            else if(currentBonus !== bonus_type[1]) {
                 soundManager.playSound(this, stompS);
             }
             goomba.body.enable = false;
@@ -261,7 +263,7 @@ Game.playState.prototype = {
 
     //life handler function
     playerLosesLife:function(game) {
-        if(player.alpha == visibleObject.true) {
+        if(player.alpha === visibleObject.true) {
             currentLifes--;
             player.alpha = visibleObject.cheat;
             lives.frame = 5 - currentLifes;
@@ -306,10 +308,10 @@ Game.playState.prototype = {
 
     //setPlayerPosition
     setPlayerPosition:function(game) {
-        if(checkP == true) {
+        if(checkP === true) {
             this.setPlayer(game, checkPointX - 15, checkPointY - 10);
         }
-        else if(checkP == false){
+        else if(checkP === false){
             this.setPlayer(game, startXY.x, startXY.y);
         }
         
@@ -330,10 +332,10 @@ Game.playState.prototype = {
         soundManager.playSound(this, mushroomSound);
         mushroom.kill();
         currentBonus = bonus_type[Math.floor(Math.random() * bonus_type.length)];
-        if(currentBonus == bonus_type[0] || currentBonus == bonus_type[1]) {
+        if(currentBonus === bonus_type[0] || currentBonus === bonus_type[1]) {
             currentBonusScoreEffect = 2;
         }
-        else if(currentBonus == bonus_type[2]) {
+        else if(currentBonus === bonus_type[2]) {
             player.alpha = visibleObject.mid;
             enableEnemyPhysics = false;
         }
@@ -342,9 +344,9 @@ Game.playState.prototype = {
 
     //bonus effect
     bonusEffect:function(game) {
-        if(player.body.enable == true) {
-            if(checkB == true) {
-                if(this.timer(game,0) == 0) {
+        if(player.body.enable === true) {
+            if(checkB === true) {
+                if(this.timer(game,0) === 0) {
                     player.alpha = visibleObject.true;
                     timeCounter = 0;
                     timeLeft = 0;
@@ -381,14 +383,14 @@ Game.playState.prototype = {
     },
 
     laserOverlap:function(player, laser) {
-        if(player.alpha == visibleObject.true) {
+        if(player.alpha === visibleObject.true) {
             laser.kill();
             this.playerLosesLife(this);
         }
     },
 
     shoot:function(ufo) {
-        if(player.body.enable == true && player.alpha == visibleObject.true)  {
+        if(player.body.enable === true && player.alpha === visibleObject.true)  {
             if(player.x >= ufo.x - ufoRange && player.x <= ufo.x + ufoRange) {
                 if (this.time.now > nextFire && lasers.countDead() > 0) {
                     nextFire = this.time.now + fireRate;
@@ -404,7 +406,7 @@ Game.playState.prototype = {
     },
 
     finishOverlap:function(player, finish) {
-        if(player.body.onFloor() && this.input.keyboard.isDown(Phaser.KeyCode.DOWN) && checkF == false) {
+        if(player.body.onFloor() && this.input.keyboard.isDown(Phaser.KeyCode.DOWN) && checkF === false) {
             backgroundS.stop();
             player.body.enable = false;
             player.animations.stop();
@@ -431,11 +433,11 @@ Game.playState.prototype = {
     //effect countdown timer
     timer:function(game, flag) {
         timeCounter++;
-        if(timeCounter == 90) {
-            if(flag==0) {
+        if(timeCounter === 90) {
+            if(flag === 0) {
                 timeLeft--;
             }
-            else if(flag==1) {
+            else if(flag === 1) {
                 timeLeft++;
             }
             timeCounter = 0;
@@ -446,7 +448,7 @@ Game.playState.prototype = {
     //effect countdown timer
     gameTimer:function(game) {
         gameTimeCounter++;
-        if(gameTimeCounter == 90) {
+        if(gameTimeCounter === 90) {
             gameTime++;
             gameTimeCounter = 0;
         }
@@ -456,7 +458,7 @@ Game.playState.prototype = {
     //players movements and views
     playerMoves:function(game) {
         //if player is alive
-        if (player.body.enable == true) {
+        if (player.body.enable === true) {
             //player stops
             player.body.velocity.x = 0;
             
@@ -488,11 +490,11 @@ Game.playState.prototype = {
             }
 
             //change sprite view when jumps
-            if (player.body.velocity.y != 0) {
-                if (player.goesRight == true) {
+            if (player.body.velocity.y !== 0) {
+                if (player.goesRight === true) {
                     player.frame = 0;
                 }
-                else if(player.goesRight == false) {
+                else if(player.goesRight === false) {
                     player.frame = 6;
                 }
             }
@@ -502,11 +504,11 @@ Game.playState.prototype = {
 ////////////////////////////////////////////////////////////////////////
 // extra
 ///////////////////////////////////////////////////////////////////////
-    pause:function(game) {
+    pause:function() {
         this.paused = true;
     },
 
-    resume:function(game) {
+    resume:function() {
         this.paused = false;
     },
 

@@ -1,4 +1,6 @@
-Game.settingsState = function(game) {
+/* global Game, imageManager, colors, textManager, buttonManager, max_level, buttonFrame, mute, menuButtonSize, clickS, soundManager, Phaser, levelManager */
+
+Game.settingsState = function() {
     
 };
 
@@ -24,7 +26,7 @@ Game.settingsState.prototype = {
         dificultyB = buttonManager.createButton(game, "Difficulty:", true, game.width/2, (game.height/2) - 20, menuButtonSize.width - 15, 20, function() {
             soundManager.playSound(game, clickS);
 
-            if(isDificultyBPressed == false) {
+            if(isDificultyBPressed === false) {
                 isDificultyBPressed = true;
                 
                 normalB = buttonManager.createButton(game, "normal", true, (game.width/2) - 50, game.height/2, menuButtonSize.width - 30, 20, function() {
@@ -53,14 +55,14 @@ Game.settingsState.prototype = {
     },
 
     update:function(game) {
-        if(isDificultyPressed == true) {
+        if(isDificultyPressed === true) {
             dificulty_text.visible = false;
             dificulty_text = textManager.createText(game, (game.width/2) + 57, (game.height/2) - 18, dificulty, colors.white, false);
             isDificultyPressed = false;
         }
         else {}
 
-        if(isMuteBPressed == true) {
+        if(isMuteBPressed === true) {
             mute_text.visible = false;
             mute_text = textManager.createText(game, (game.width/2) + 30, 52, mute_state, colors.red, false);
             isMuteBPressed = false;

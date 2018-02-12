@@ -1,3 +1,5 @@
+/* global textManager, colors, gameOver, levelScore, level */
+
 var playerStatsManager = new Object();
 
 playerStatsManager.printOveralStats = function(game, lives, score, time, level, numOfLevels) {
@@ -6,9 +8,10 @@ playerStatsManager.printOveralStats = function(game, lives, score, time, level, 
     if (level > numOfLevels) {
         say = 'End of game';
     }
-    if(gameOver == true) {
+    if(gameOver === true) {
         say = 'Game Over';
     }
+    
     score = playerStatsManager.currentOveralScore(game, levelScore);
     textManager.createText(game, game.width/2,  game.height/2, '\n' +say +'\n' +lives +':lives left\n' +'total score gained: ' +score +'\n' +'level time: ' +time +' seconds\n', colors.white, false);
 };

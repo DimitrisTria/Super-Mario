@@ -1,4 +1,6 @@
-Game.helpState = function(game) {
+/* global Game, Phaser, imageManager, textManager, colors, buttonManager, max_level, buttonFrame */
+
+Game.helpState = function() {
     
 };
     

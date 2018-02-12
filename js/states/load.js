@@ -1,4 +1,6 @@
-Game.loadState = function(game) {
+/* global Game, levelManager, playerStatsManager, colors, textManager, Phaser */
+
+Game.loadState = function() {
 
 };
 

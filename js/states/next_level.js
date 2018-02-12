@@ -1,4 +1,6 @@
-Game.next_levelState = function(game) {
+/* global Game, Phaser, imageManager, levelScore, currentLevel, score, finishLevel, levelLocked, gameOver, buttonManager, buttonFrame, levelManager, currentLifes, playerStatsManager, gameTime */
+
+Game.next_levelState = function() {
 
 };
 
@@ -18,7 +20,7 @@ Game.next_levelState.prototype = {
         if(currentLevel <= finishLevel) {
             levelLocked[currentLevel] = 2;  //unlock next level
 
-            if(currentLevel != finishLevel+1 && gameOver == false) {
+            if(currentLevel !== finishLevel+1 && gameOver === false) {
                 continueB = buttonManager.createButton(game, "continue", true, game.width-28, 11, 55, 20, function() {
                     checkF = false;
                     buttonManager.buttonState(game, currentLevel, 'play');

@@ -1,3 +1,5 @@
+/* global levelLocked, level, imageManager, dificulty, colors, textManager, firstGame, currentLevel, scoreXY, clockXY */
+
 var levelManager = new Object();
 
 var tempL = -1;
@@ -11,7 +13,7 @@ levelManager.controlLevels = function(game, operation) {
 };
 
 levelManager.checkLevelAvailability = function(game, level, isAvailable) {
-    if(isAvailable == 1) { //not available
+    if(isAvailable === 1) { //not available
         level = -1;
         tempL = 0; //logw arithmhshs spritesheet (blank)
     }
@@ -25,23 +27,23 @@ levelManager.checkLevelAvailability = function(game, level, isAvailable) {
 };
 
 levelManager.makeDificulty = function(game) {
-    if(dificulty == "normal") {
+    if(dificulty === "normal") {
         currentLifes = 5;
         extraDificulty = 1;
     }
-    if(dificulty == "hard") {
+    if(dificulty === "hard") {
         currentLifes = 5;
         extraDificulty = 2.1;
     }
-    else if(dificulty == "survival") {
+    else if(dificulty === "survival") {
         currentLifes = 1;
         extraDificulty = 1;
     }
 };
 
 levelManager.updateDificulty = function(game) {
-    if(dificulty == "normal") {
-        if(!currentLifes == 0) {
+    if(dificulty === "normal") {
+        if(!currentLifes === 0) {
             currentLifes++;
         }
         else {}
@@ -56,8 +58,8 @@ levelManager.updateDificulty = function(game) {
 };
 
 levelManager.createLevelInfo = function(game) {
-    if(firstGame == true) {
-        if(currentLevel == 0) {
+    if(firstGame === true) {
+        if(currentLevel === 0) {
             textManager.createText(game, game.width - 30, 20, "lives", colors.orange, true);
             textManager.createText(game, scoreXY.x+16, scoreXY.y+20, "score", colors.orange, true);
             textManager.createText(game, clockXY.x+35, clockXY.y+20, "time events", colors.orange, true);
@@ -67,14 +69,14 @@ levelManager.createLevelInfo = function(game) {
             textManager.createText(game, 420, 60, "when finish press\n the down arrow", colors.orange, false);
             textManager.createText(game, 463, 150, "finish", colors.orange, false);
         }
-        else if(currentLevel == 1) {
+        else if(currentLevel === 1) {
             textManager.createText(game, 959, 151, "checkpoint", colors.red, false);
             textManager.createText(game, 2032, 131, "finish", colors.orange, false);
         }
-        else if(currentLevel == 2) {
+        else if(currentLevel === 2) {
             textManager.createText(game, 785, 170, "finish", colors.orange, false);
         }
-        else if(currentLevel == 3) {
+        else if(currentLevel === 3) {
             textManager.createText(game, 1583, 145, "finish", colors.orange, false);
         }
     }
